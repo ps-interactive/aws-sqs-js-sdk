@@ -1,8 +1,8 @@
 {
-  "name": "aws-s3-js-sdk",
+  "name": "aws-sqs-js-sdk",
   "version": "1.0.0",
-  "description": "Lab Resources for EC2 JavaScript SDK",
-  "main": "ec2.js",
+  "description": "Lab Resources for SQS JavaScript SDK",
+  "main": "sqs.js",
   "dependencies": {
     "aws-sdk": "^2.675.0",
     "minimist": "^1.2.5"
@@ -13,12 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tjbell/aws-s3-js-sdk.git"
+    "url": "git+https://github.com/ps-interactive/aws-sqs-js-sdk.git"
   },
   "author": "Thomas Bell",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tjbell/aws-s3-js-sdk/issues"
+    "url": "https://github.com/ps-interactive/aws-sqs-js-sdk/issues"
   },
-  "homepage": "https://github.com/tjbell/aws-s3-js-sdk#readme"
+  "homepage": "https://github.com/ps-interactive/aws-sqs-js-sdk#readme"
 }
