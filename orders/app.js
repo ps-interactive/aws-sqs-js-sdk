@@ -1,20 +1,34 @@
-const AWS = require('aws-sdk');
+const fs = require('fs');
+const path = require('path');
 
-AWS.config.region = 'us-west';
-AWS.config.apiVersion = '2012-11-05';
+const express = require('express');
+const app = new express();
+const port = 8080;
 
-const sqs = new AWS.SQS();
+app.set('views',path.join(__dirname, '/views'));
+app.set('view engine','ejs');
 
-const message = (err, data) => {
-  if (err) { console.log(`Error: ${err.message}`); }
-  else if (data) { console.log(`Success: ${JSON.stringify(data, null, 2)}`); }
-};
+app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => res.render('index'));
 
-/*********************/
+app.get('/test', (req, res) => res.render('test'));
+
+app.get('/store', (req, res) =>  res.render('store'));
+app.post('/store', (req, res) => {
+    // req.body.from
+    // req.body.to
+    res.render('store', {message: 'Transfer Completed'});
+});
+
+app.listen(port, () => { console.log(`Carved Rock Order Service Running on ${port}!`) });
+
+/*
+
 sqs.listQueues({}, );
 
-/*********************/
+
 const params = {
   QueueName: 'SQS_QUEUE_NAME',
   Attributes: {
@@ -24,13 +38,13 @@ const params = {
 };
 sqs.createQueue(params, message);
 
-/*********************/
+
 sqs.getQueueUrl({ QueueName: 'SQS_QUEUE_NAME' }, message);
 
-/*********************/
+
 sqs.deleteQueue({ QueueUrl: 'SQS_QUEUE_URL' }, message);
 
-/*********************/
+
 const params = {
    // Remove DelaySeconds parameter and value for FIFO queues
   DelaySeconds: 10,
@@ -46,7 +60,7 @@ const params = {
 };
 sqs.sendMessage(params, message);
 
-/*********************/
+
 const queueURL = "SQS_QUEUE_URL";
 const params = {
   AttributeNames: [ "SentTimestamp" ],
@@ -71,7 +85,7 @@ sqs.receiveMessage(params, (err, data) => {
   }
 });
 
-/*********************/
+
 const queueURL = 'https://sqs.REGION.amazonaws.com/ACCOUNT-ID/QUEUE-NAME'
 const params = {
   AttributeNames: ['SentTimestamp'],
@@ -97,7 +111,7 @@ sqs.receiveMessage(params, (err, data) => {
   }
 })
 
-/*********************/
+
 const params = {
   QueueName: 'SQS_QUEUE_NAME',
   Attributes: { 'ReceiveMessageWaitTimeSeconds': '20' }
@@ -120,9 +134,10 @@ const params = {
 };
 sqs.receiveMessage(params, message);
 
-/*********************/
+
 const params = {
  Attributes: { "RedrivePolicy": "{\"deadLetterTargetArn\":\"DEAD_LETTER_QUEUE_ARN\",\"maxReceiveCount\":\"10\"}" },
  QueueUrl: "SOURCE_QUEUE_URL"
 };
 sqs.setQueueAttributes(params, message);
+*/
