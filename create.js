@@ -1,7 +1,8 @@
 const AWS = require('aws-sdk');
-AWS.config.update({region: 'us-west-2'});
+AWS.config.region = 'us-west-2';
+AWS.config.apiVersion = '2012-11-05';
 
-const sqs = new AWS.SQS({apiVersion: '2012-11-05'});
+const sqs = new AWS.SQS();
 
 const message = (err, data) => {
   if (err) { console.log(`Error: ${err.message}`); }

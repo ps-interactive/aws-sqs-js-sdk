@@ -12,14 +12,23 @@
   
   <div class="store-content">
     <h1>Store</h1>
+
     <% if (locals.message) { %>
       <span class="message"><%= message %></span>
     <% } %>
 
-    <form id="orderForm" action='/store' method='post'>
+    <div class="store-card">
       <img src="../img/grey-boots.jpg">
-      <button type="submit">Order</button>
-    </form>
+      <hr>
+      <div class="container">
+        <h4><b>Grey Boots</b></h4> 
+        <p>$249.00</p>
+        <form id="orderForm" action='/store' method='post'>
+          <button type="submit">Order</button>
+        </form>
+      </div>
+    </div>
+
   </div>
 
 <%- include('footer'); %>

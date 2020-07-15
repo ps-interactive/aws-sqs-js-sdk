@@ -1,9 +1,16 @@
 const fs = require('fs');
 const path = require('path');
+const { message, randomID } = require('../utils.js')
 
 const express = require('express');
 const app = new express();
 const port = 8080;
+
+const AWS = require('aws-sdk');
+AWS.config.region = 'us-west-2';
+AWS.config.apiVersion = '2012-11-05';
+
+const sqs = new AWS.SQS();
 
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
@@ -15,6 +22,21 @@ app.get('/', (req, res) => res.render('index'));
 
 app.get('/store', (req, res) =>  res.render('store'));
 app.post('/store', (req, res) => {
+
+  const OrderID = randomID();
+  const UserID = randomID();
+  const ProductID = randomID();
+
+  const params = {
+    MessageAttributes: {
+      "OrderID": { DataType: "String", StringValue: OrderID },
+      "UserID": { DataType: "String", StringValue: UserID },
+      "ProductID": { DataType: "String", StringValue: ProductID }
+    },
+    MessageBody: `New Order: ${OrderID}\nUserID: ${UserID}\nProductID: ${ProductID}\n`,
+    QueueUrl: "SQS_QUEUE_URL"
+  };
+  sqs.sendMessage(params, message);
   res.render('store', { message: 'Order Complete!' });
 });
 
