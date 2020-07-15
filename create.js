@@ -9,10 +9,7 @@ const message = (err, data) => {
 };
 
 const params = {
-  QueueName: 'transactions',
-  Attributes: {
-    'DelaySeconds': '60',
-    'MessageRetentionPeriod': '86400'
-  }
+  QueueName: 'orders',
+  Attributes: { 'ReceiveMessageWaitTimeSeconds': '10' }
 };
 sqs.createQueue(params, message);

@@ -16,19 +16,9 @@
       <span class="message"><%= message %></span>
     <% } %>
 
-    <form id="transferForm" action='/store' method='post'>
-      <span>Transfer From: </span> 
-      <select required name='from' id='from'>
-        <option value="checking">Checking</option>
-        <option value="savings">Savings</option>
-      </select>
-      <span> to: </span>
-      <select required name='to' id='to'>
-        <option value="checking">Checking</option>
-        <option value="savings">Savings</option>
-      </select>
-      <input type="number" name="amount" id="amount" required placeholder="amount" step="0.01">
-      <button type="submit">Transfer</button>
+    <form id="orderForm" action='/store' method='post'>
+      <img src="../img/grey-boots.jpg">
+      <button type="submit">Order</button>
     </form>
   </div>
 
