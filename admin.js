@@ -1,4 +1,4 @@
-const { message, messageJSON, readJSON } = require('../utils.js');
+const { message } = require('./utils.js');
 
 /********
  AWS SDK 

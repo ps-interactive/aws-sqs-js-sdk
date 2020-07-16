@@ -2,7 +2,7 @@
   "name": "aws-sqs-js-sdk",
   "version": "1.0.0",
   "description": "Lab Resources for SQS JavaScript SDK",
-  "main": "create.js",
+  "main": "admin.js",
   "dependencies": {
     "aws-sdk": "^2.675.0",
     "ejs": "^3.1.3",
@@ -11,8 +11,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start:store": "node ./store/app.js",
-    "start:admin": "node ./admin/app.js"
+    "start:store": "node ./store/app.js"
   },
   "repository": {
     "type": "git",
