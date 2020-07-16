@@ -11,8 +11,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start:orders": "node ./orders/app.js",
-    "start:inventory": "node ./inventory/app.js"
+    "start:store": "node ./store/app.js",
+    "start:admin": "node ./admin/app.js"
   },
   "repository": {
     "type": "git",
