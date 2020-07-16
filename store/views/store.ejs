@@ -8,6 +8,33 @@
       flex-direction: column;
       height: 100vh;
     }
+    .store-content {
+      flex: 1 0 auto;
+      padding: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-gap: 20px;
+      align-items: stretch;
+    }
+    .grid > article {
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+    }
+    .grid > article img {
+      max-width: 100%;
+    }
+    .text {
+      padding: 0 20px 20px;
+    }
+    .text > button {
+      background: gray;
+      border: 0;
+      color: white;
+      padding: 10px;
+      width: 100%;
+    }
   </style>
   
   <div class="store-content">
@@ -17,18 +44,34 @@
       <span class="message"><%= message %></span>
     <% } %>
 
-    <div class="store-card">
-      <img src="../img/grey-boots.jpg">
-      <hr>
-      <div class="container">
-        <h4><b>Grey Boots</b></h4> 
-        <p>$249.00</p>
-        <form id="orderForm" action='/store' method='post'>
-          <button type="submit">Order</button>
-        </form>
-      </div>
-    </div>
+    <main class="grid">
+      <article>
+        <img src="../img/grey-boots.jpg">
+        <div class="text">
+          <h4><b>Grey Boots</b></h4> 
+          <p>$249.00</p>
+          <form id="orderForm" action='/store' method='post'>
+            <button type="submit">Order</button>
+          </form>
+        </div>
+      </article>
+      <article>
+        <img src="../img/brown-boots.jpg">
+        <div class="text">
+          <h4><b>Brown Boots</b></h4> 
+          <p>$249.00</p>
+          <form id="orderForm" action='/store' method='post'>
+            <button type="submit">Order</button>
+          </form>
+        </div>
+      </article>
+    </main>
 
   </div>
 
 <%- include('footer'); %>
+
+
+
+
+
