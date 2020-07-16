@@ -11,17 +11,13 @@ const listQueues = () => {};
 
 const createQueue = (name) => {};
 
+const getQueueUrl = (name) => {};
+
 const pollQueue = (name) => {
-  (function pollMessages() {
 
-    /*****************
-     Receive Messages 
-    *****************/
+    (function pollMessages() {
+    })();
 
-
-    /****************/
-
-  })();
 };
 
 const purgeQueue = (name) => {};
