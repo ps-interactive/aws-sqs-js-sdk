@@ -27,7 +27,6 @@ app.get('/', (req, res) => {
   });
 });
 
-
 app.get('/create', (req, res) => {
   const params = {
     QueueName: 'orders',
@@ -35,44 +34,34 @@ app.get('/create', (req, res) => {
   };
   sqs.createQueue(params, (err, data) => {
     if (err) {
-      res.render('index', { message: err.message });
+      res.render('index', { message: err.message, queues: [] });
     } else if (data) { 
-      res.render('index', { message: data.QueueUrl });
+      res.render('index', { message: '', queues: [ data.QueueUrl ] });
     }
   });
 });
 
-// class EmptyQueue extends Error {
-//   constructor(message) {
-//     super(message);
-//     this.type = 'EmptyQueue';
-//   }
-// }
 
-// app.get('/polling', (req, res) => {
+app.get('/review', (req, res) => {
+  const params = {
+    QueueUrl: '', // get from link
+    WaitTimeSeconds: 10,
+    VisibilityTimeout: 10
+  };
+  sqs.receiveMessage(params, (err, data) => {
+    if (err) {
+      res.render('index', { message: err.message, messages: [] });
+    } else if (data) {
+      res.render('index', { message: '', messages: data.Messages });
+    }
+  });
+});
 
-//   const QueueUrl = 'https://sqs.us-west-2.amazonaws.com/159180450383/orders';
-//   const sqs = new AWS.SQS({ params: { QueueUrl: QueueUrl } });
-
-//   (function pollMessages() {
-//     sqs.receiveMessage({ WaitTimeSeconds: 10, VisibilityTimeout: 10 }).promise()
-//       .then(data => {
-//         if (!data.Messages) {
-//           throw new EmptyQueue('There are no messages in the queue.');
-//         }
-
-//         console.log(`Processing Message ${data.Messages[0].MessageId}: ${data.Messages[0].Body}`);
-//         console.log(`Deleting: ${data.Messages[0].MessageId}`);
-//         return sqs.deleteMessage({ ReceiptHandle: data.Messages[0].ReceiptHandle }).promise();
-//       })
-//       .then(data => console.log('Message Deleted!'))
-//       .catch(error => {
-//         const type = error.type || 'UnexpectedError';
-//         console.log(`${type}: ${error.message}`);
-//       })
-//       .finally(pollMessages);
-//   })();
-
-// });
+app.get('/delete', (req, res) => {
+  const params = {
+    ReceiptHandle: '' // get from link
+  };
+  sqs.deleteMessage(params, (err, data) => {});
+});
 
 app.listen(port, () => { console.log(`Carved Rock Inventory Service Running on ${port}!`) });

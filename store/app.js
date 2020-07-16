@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const { message, randomID } = require('../utils.js')
+
+const randomID = () => '_' + Math.random().toString(36).substr(2, 9);
 
 const express = require('express');
 const app = new express();
@@ -34,10 +35,15 @@ app.post('/store', (req, res) => {
       "ProductID": { DataType: "String", StringValue: ProductID }
     },
     MessageBody: `New Order: ${OrderID}\nUserID: ${UserID}\nProductID: ${ProductID}\n`,
-    QueueUrl: "SQS_QUEUE_URL"
+    QueueUrl: ''
   };
-  sqs.sendMessage(params, message);
-  res.render('store', { message: 'Order Complete!' });
+  sqs.sendMessage(params, (err, data) => {
+    if (err) {
+      res.render('store', { message: err.message });
+    } else {
+      res.render('store', { message: 'Order Complete!' });
+    }
+  });
 });
 
 app.listen(port, () => { console.log(`Carved Rock Order Service Running on ${port}!`) });
