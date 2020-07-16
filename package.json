@@ -13,7 +13,8 @@
   "devDependencies": {},
   "scripts": {
     "start:store": "node ./store/app.js",
-    "start:admin": "node ./admin/app.js"
+    "start:admin": "node ./admin/app.js",
+    "start": "npm-run-all -p -r start:store start:admin"
   },
   "repository": {
     "type": "git",

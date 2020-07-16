@@ -16,9 +16,11 @@
             <div class="content">
               <table class="table is-striped">
                 <tbody>
-                  <tr>
-                    <td>Orders</td>
-                  </tr>
+                  <% queues.forEach( queue => { %>
+                    <tr>
+                      <td><%= queue %></td>
+                    </tr>
+                  <% }); %>
                 </tbody>
               </table>
             </div>

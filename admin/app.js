@@ -18,7 +18,6 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-
   sqs.listQueues((err, data) => {
     if (err) {
       res.render('index', { message: err.message, queues: [] });
@@ -26,7 +25,6 @@ app.get('/', (req, res) => {
       res.render('index', { message: err.message, queues: data.QueueUrls });
     }
   });
-
 });
 
 
