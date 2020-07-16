@@ -31,9 +31,9 @@ const deleteQueue = (name) => {};
 const cli = require('./cli.js');
 switch (cli.command) {
   case 'queues': listQueues(); break;
-  case 'create': createQueue(cli.resourceName); break;
-  case   'poll': pollQueue(cli.resourceName); break;
-  case  'purge': purgeQueue(cli.resourceName); break;
-  case 'delete': deleteQueue(cli.resourceName); break;
+  case 'create': createQueue(cli.name); break;
+  case   'poll': pollQueue(cli.name); break;
+  case  'purge': purgeQueue(cli.name); break;
+  case 'delete': deleteQueue(cli.name); break;
   default      : console.error('Not a valid command!'); break;
 }
