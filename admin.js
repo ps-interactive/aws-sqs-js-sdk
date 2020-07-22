@@ -1,11 +1,4 @@
-const { message } = require('./utils.js');
-
-class EmptyQueue extends Error {
-  constructor(message) {
-    super(message);
-    this.type = 'EmptyQueue';
-  }
-}
+const { message, EmptyQueue } = require('./utils.js');
 
 /********
  AWS SDK 
