@@ -1,5 +1,12 @@
 const { message } = require('./utils.js');
 
+class EmptyQueue extends Error {
+  constructor(message) {
+    super(message);
+    this.type = 'EmptyQueue';
+  }
+}
+
 /********
  AWS SDK 
 ********/
@@ -15,14 +22,14 @@ const getQueueUrl = (name) => {};
 
 const pollQueue = (name) => {
 
-    (function pollMessages() {
+    (async function pollMessages() {
     })();
 
 };
 
-const purgeQueue = (name) => {};
+const purgeQueue = async (name) => {};
 
-const deleteQueue = (name) => {};
+const deleteQueue = async (name) => {};
 
 
 /****
