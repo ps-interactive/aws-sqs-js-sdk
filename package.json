@@ -5,7 +5,7 @@
   "main": "admin.js",
   "dependencies": {
     "aws-sdk": "^2.675.0",
-    "ejs": "^3.1.3",
+    "ejs": "^3.1.7",
     "express": "^4.17.1",
     "minimist": "^1.2.5"
   },
